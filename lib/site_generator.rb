@@ -23,27 +23,11 @@ class SiteGenerator
 	end
 
 	def generate_pages!
+		template = ERB.new(File.read("lib/templates/movie.html.erb"))		
 		Movie.all.each do |movie|
-			f = File.new("_site/movies/#{movie.title}.html", 'w')
-			f.write("<!DOCTYPE html>
-<html>
-  <head>
-    <title>#{movie.title}</title>
-  </head>
-  <body>
-    <h1>#{movie.title}</h1>
-    <h3>Release Date: #{movie.release_date}</h3>
-    <h4><em>Director: #{movie.director}</em></h4>
-    <p>#{movie.summary}</p>
-    <br />
-    <h2>Other Movies</h2>
-    <ul>")
-			f.puts
-			Movie.all.each {|movie| f.puts("      <li><a href=\"#{movie}.html\">#{movie.title}</a></li>")}
-			f.write("    </ul>
-  </body>
-</html>")
-		f.close
+			f = File.new("_site/movies/#{movie}.html", 'w')
+			f.write(template.result(binding))
+			f.close
 		end
 	end
 end
