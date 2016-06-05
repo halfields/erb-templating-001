@@ -12,7 +12,7 @@
     <h2>Other Movies</h2>
     <ul>
       <% Movie.all.each do |movie| %>
-        <% f = File.new("_site/movies/%<%= movie.title %>.html", 'w') %>
+  #      <% f = File.open("_site/movies/%<%= movie.title.downcase.gsub(' ','_') %>.html", 'w') %>
           <% Movie.all.each {|movie| f.puts("      <li><a href=\"<%= movie %>.html\"><%= movie.title %></a></li>  ")} %>
     </ul>
   </body>
