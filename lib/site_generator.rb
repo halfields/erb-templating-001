@@ -25,9 +25,9 @@ class SiteGenerator
 	def generate_pages!
 		template = ERB.new(File.read("lib/templates/movie.html.erb"))		
 		Movie.all.each do |movie|
-			f = File.new("_site/movies/#{movie.title.downcase.gsub(' ','_')}.html", 'w')
+			f = File.new("_site/movies/#{movie.url}.html", 'w')
 			f.write(template.result(binding))
-			binding.pry
+		#	binding.pry
 			f.close
 		end
 	end
