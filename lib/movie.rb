@@ -1,3 +1,4 @@
+require 'erb'
 require 'pry'
 
 class Movie

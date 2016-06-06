@@ -11,7 +11,13 @@
     <br />
     <h2>Other Movies</h2>
     <ul>
-          <% Movie.all.each {|movie| puts("      <li><a href=\"<%= movie.url %>.html\"><%= movie.title %></a></li>  ")} %>
+          <% Movie.all.each do |movie| %> 
+            <%"      <li><a href=\""%>
+            <%= movie.url %>
+            <% ".html\">" %>
+            <%= movie.title %>
+            <% "</a></li>" %>
+         <% end %>
     </ul>
   </body>
 </html>
